@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-const Container = styled.nav`
+const Image = styled.div`
   display: flex;
-  width: 100vw;
-  height: 100px;
   justify-content: center;
+  img {
+    width: 180px;
+  }
 `;
 
-export default Container;
+export default Image;
