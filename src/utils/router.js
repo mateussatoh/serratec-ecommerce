@@ -1,7 +1,7 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import MainPage from "../pages/MainPage";
-import Login from "../pages/LogIn";
+import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Payment from "../pages/Payment";
 import ProductDetails from "../pages/ProductDetails";
@@ -9,18 +9,29 @@ import Checkout from "../pages/Checkout";
 import Topbar from "../components/Topbar";
 
 const Routes = () => (
-    <BrowserRouter>
-        <Topbar>
-            <Switch>
-                <Route exact path="/" component={MainPage}></Route>
-                <Route path="/carrinho" component={Checkout}></Route>
-                <Route exact path="/login" component={Login}></Route>
-                <Route exact path="/login/cadastro" component={SignUp}></Route>
-                <Route path="/:id/detalhes" component={ProductDetails}></Route>
-                {/* <Route path="/" component={Payment}></Route> */}
-            </Switch>
-        </Topbar>
-    </BrowserRouter>
+  <BrowserRouter>
+    <Topbar />
+    <Switch>
+      <Route exact path="/">
+        <MainPage />
+      </Route>
+      <Route path="/checkout">
+        <Checkout />
+      </Route>
+      <Route exact path="/login">
+        <Login />
+      </Route>
+      <Route exact path="/signup">
+        <SignUp />
+      </Route>
+      <Route path="/:id/details">
+        <ProductDetails />
+      </Route>
+      <Route path="/:id/payment">
+        <Payment />
+      </Route>
+    </Switch>
+  </BrowserRouter>
 );
 
 export default Routes;
