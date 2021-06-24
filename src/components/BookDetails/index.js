@@ -12,7 +12,7 @@ import Buttons from "./Buttons";
 import Price from "./Price";
 
 const index = (props) => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const addQuantity = () => {
     if (props.dados.quantidadeEmEstoque > quantity) {
@@ -21,7 +21,7 @@ const index = (props) => {
   };
 
   const removeQuantity = () => {
-    if (quantity > 0) {
+    if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
@@ -34,7 +34,7 @@ const index = (props) => {
       <BuyModal>
         <Title>
           <h2>{props.dados.nome}</h2>
-          <p>Autor Not Found</p>
+          <p>{props.dados.autor}</p>
         </Title>
 
         <Quantity>

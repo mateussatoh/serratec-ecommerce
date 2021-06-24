@@ -8,7 +8,7 @@ import Link from "react-router-dom/Link";
 
 const index = (props) => {
   const [quantidade, setQuantidade] = useState(1);
-
+  console.log(props);
   return (
     <Container>
       <Link to={`/book/${props.children.id}`}>
@@ -17,7 +17,7 @@ const index = (props) => {
         </Image>
         <BookDetails>
           <h4>{props.children.nome}</h4>
-          <p>Autor Not found</p> {/* Atributo não existente na API */}
+          <p>{props.children.autor}</p>
           <div>
             <s>De R$ {props.children.preco}</s>
             <p>Por R$ {props.children.preco - 10}</p>
