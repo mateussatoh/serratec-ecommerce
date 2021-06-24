@@ -13,33 +13,22 @@ import Price from "./Price";
 
 // const [quantity, setQuantity] = useState(0);
 
-const index = () => {
+const index = (props) => {
+  
+
   return (
     <Container>
       <Image>
         <img
-          src="https://images-na.ssl-images-amazon.com/images/I/51DV4ZW6l8L._SX335_BO1,204,203,200_.jpg"
+          src={props.dados.url}
           alt=""
         />
       </Image>
-      <Description>
-        Um clássico de Napoleon Hill que tem mudado milhões de vidas! Sua mente
-        é um talismã secreto. De um lado é dominado pelas letras AMP (Atitude
-        Mental Positiva) e, por outro , pelas letras AMN (Atitude Mental
-        Negativa). Uma atitude positiva irá, naturalmente, atrair sucesso e
-        prosperidade. A atitude negativa vai roubá-lo de tudo que torna a vida
-        digna de ser vivida. Seu sucesso, saúde, felicidade e riqueza dependem
-        de qual lado você irá usar. Quando o pioneiro motivacional Napoleon Hill
-        e o CEO Quando o pioneiro motivacional Napoleon Hill e o CEO milionário
-        W. Clement Stone se uniram para formar uma das parcerias mais notáveis
-        de todos os tempos, o resultado foi Atitude Mental Positiva, o fenômeno
-        editorial que sugeriu ao mundo que, com a atitude certa, qualquer um
-        pode realizar seus sonhos.
-      </Description>
+      <Description>{props.dados.descricao}</Description>
       <BuyModal>
         <Title>
-          <h2>Atitude mental positiva</h2>
-          <p>Napoleon Hill</p>
+          <h2>{props.dados.nome}</h2>
+          <p>Autor Not Found</p>
         </Title>
 
         <Quantity>
@@ -48,10 +37,10 @@ const index = () => {
             <button>+</button>
             <button>-</button>
           </div>
-          <p>Máximo de 22 unidades</p>
+          <p>{`Máximo de ${props.dados.quantidadeEmEstoque} unidades`}</p>
         </Quantity>
         <Price>
-          <p>R$ 29,99</p>
+          <p>{`R$ ${props.dados.preco}`}</p>
         </Price>
         <Shipping>
           <p>Calcular frete</p>

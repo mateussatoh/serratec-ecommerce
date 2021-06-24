@@ -8,6 +8,17 @@ function obterTodos(){
     });
 }
 
+function obterProdutoPorId(idProduto) {
+    return new Promise((resolve, reject) => {
+        return api.get(`/produto/${idProduto}`)
+        .then(response => resolve(response))
+        .catch(error => reject(error))
+    });
+}
+
+// function obterProdutosPorCategoria() {}
+
 export default {
-    obterTodos
+    obterTodos,
+    obterProdutoPorId
 }
