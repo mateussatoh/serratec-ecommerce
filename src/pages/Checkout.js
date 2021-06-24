@@ -2,6 +2,8 @@ import React from "react";
 
 import CheckoutMenu from "../components/CheckoutMenu";
 
+
+
 const Checkout = () => {
   return (
     <div>

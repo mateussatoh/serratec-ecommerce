@@ -26,11 +26,11 @@ const index = () => {
 
     apiUsuario.logar(username, senha)
       .then(resposta => {
-        console.log(resposta)
-
         const { Authorization, idUsuario } = resposta.data;
         utilStorage.salvarTokenNaStorage(Authorization, idUsuario);
-        window.open("/checkout", "_self");
+
+        window.open('/checkout', '_self')
+        // window.open(`/book/${idProduto}`, "_self");
       })
       .catch(erro => {
         alert("Erro! Verifique o console.")
