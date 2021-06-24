@@ -10,8 +10,22 @@ function removerAutenticacao(){
     localStorage.removeItem("token");
 }
 
+function salvarItemDoPedidoNaStorage(idProduto, quantidade){
+    localStorage.setItem('idProduto', idProduto);
+    localStorage.setItem('quantidade', quantidade);
+}
+
+function obterItemDoPedidoDaStorage(){
+    return [
+        localStorage.getItem('idProduto'),
+        localStorage.getItem('quantidade')
+    ];
+}
+
 export default {
     salvarTokenNaStorage,
     obterTokenDaStorage,
-    removerAutenticacao
+    removerAutenticacao,
+    salvarItemDoPedidoNaStorage,
+    obterItemDoPedidoDaStorage
 }

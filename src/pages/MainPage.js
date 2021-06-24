@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import apiProduto from "../services/produto-api";
-// import apiCategoria from "../services/categoria-api";
-import utilStorage from "../utils/storage.js";
 
 import CategoryBar from "../components/CategoryBar";
 import BookCard from "../components/BookCard";
@@ -10,6 +8,13 @@ import BookCardContainer from "../components/BookCardContainer";
 
 const MainPage = () => {
   const [produtos, setProdutos] = useState([]);
+
+  const enumCategorias = {
+    Autoconhecimento : 1,
+    Biografia : 2,
+    Ficcao : 3,
+    Negocios : 4,
+  }
 
   const recuperarProdutos = () => {
     apiProduto
@@ -23,18 +28,43 @@ const MainPage = () => {
       });
   };
 
-  // const pegarPorCategoria = () => {  }
+  const recuperarProdutosPorCategoria = (idCategoria) => {
+    apiProduto.obterProdutosPorCategoria(idCategoria)
+      .then((resposta) => {
+        console.log(resposta)
+        resposta === [] ? setProdutos([]) : setProdutos(resposta.data)
+      })
+      .catch((erro) => {
+        alert("Erro ao listar produtos! Verifique o console.");
+        console.log(erro);
+      });
+  }
 
   useEffect(() => {
-    // let token = utilStorage.obterTokenDaStorage();
+    const recurso = window.location.href.split(":3000")[1];
 
-    // if (!token) {
-    //   window.open("/login", "_self");
-    //   return;
-    // }
+    switch(recurso) {
+      case '/':
+        recuperarProdutos();
+        break;
+      case '/negocios':
+        recuperarProdutosPorCategoria(enumCategorias.Negocios);
+        break;
+      case '/biografias':
+        recuperarProdutosPorCategoria(enumCategorias.Biografia);
+        break;
+      case '/ficcao':
+        recuperarProdutosPorCategoria(enumCategorias.Ficcao);
+        break;
+      case '/auto-conhecimento':
+        recuperarProdutosPorCategoria(enumCategorias.Autoconhecimento);
+        break;
+      default: // should never be reached        
+        break;
+    }
 
-    recuperarProdutos();
-  }, []);
+    console.log(produtos)
+  });
 
   return (
     <div>

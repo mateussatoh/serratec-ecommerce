@@ -1,5 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+
+import utilStorage from "../../utils/storage";
 
 import Container from "./Container";
 import BuyModal from "./BuyModal";
@@ -25,6 +26,13 @@ const index = (props) => {
       setQuantity(quantity - 1);
     }
   };
+
+  const handleAdicionarAoCarrinho = () => {
+    utilStorage.salvarItemDoPedidoNaStorage(props.dados.id, quantity);
+    
+    window.open("/login", "_self");
+  }
+
   return (
     <Container>
       <Image>
@@ -56,7 +64,7 @@ const index = (props) => {
           <input type="text" placeholder="Digite seu CEP" />
         </Shipping>
         <Buttons>
-          <button>Adicionar ao carrinho</button>
+          <button onClick={handleAdicionarAoCarrinho}>Adicionar ao carrinho</button>
           <button>Comprar agora</button>
         </Buttons>
       </BuyModal>
