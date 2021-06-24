@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import MainPage from "../pages/MainPage";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
@@ -42,6 +42,9 @@ const Routes = () => (
       <Route path="/auto-conhecimento">
         <MainPage />
       </Route>
+
+      {/* Redirect all 404's to home */}
+      <Redirect to='/' />
     </Switch>
   </BrowserRouter>
 );

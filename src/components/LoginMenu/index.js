@@ -14,9 +14,7 @@ const index = () => {
   const [username, setUsername] = useState("");
   const [senha, setSenha] = useState("");
 
-  const adicionarItemDoPedidoAoCarrinhoDeCompras = () => {
-
-  }
+  // const adicionarItemDoPedidoAoCarrinhoDeCompras = () => { }
 
   const efetuarLogin = (e) => {
     e.preventDefault();
@@ -30,10 +28,9 @@ const index = () => {
       .then(resposta => {
         console.log(resposta)
 
-        const { Authorization } = resposta.data;
-        // const { Authorization, idUsuario } = resposta.data;
-        utilStorage.salvarTokenNaStorage(Authorization);
-        window.open("/", "_self");
+        const { Authorization, idUsuario } = resposta.data;
+        utilStorage.salvarTokenNaStorage(Authorization, idUsuario);
+        window.open("/checkout", "_self");
       })
       .catch(erro => {
         alert("Erro! Verifique o console.")
