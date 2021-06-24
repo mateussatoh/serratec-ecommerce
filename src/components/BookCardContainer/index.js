@@ -3,8 +3,8 @@ import styled from "styled-components";
 const index = styled.div`
   display: grid;
   margin: 0 auto;
-  grid-template-columns: repeat(4, 1fr);
-  width: 1100px;
+  grid-template-columns: repeat(4, 260px);
+  width: 1000px;
   height: 100%;
 `;
 

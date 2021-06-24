@@ -2,22 +2,29 @@ import styled from "styled-components";
 
 const BookDetails = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  margin-top: 5px;
   width: 200px;
-  height: 300px;
+  margin-top: 5px;
+
   h4 {
     color: black;
-    font-size: 20px;
+    font-size: 16px;
   }
   p {
-    font-size: 20px;
+    font-size: 16px;
   }
 
-  div p:first-child {
-    font-size: 20px;
+  div {
+    margin-top: 5px;
   }
-  font-size: 20px;
-  div p:last-child {
+
+  div s {
+    font-size: 14px;
+  }
+  div p {
+    font-size: 22px;
   }
 `;
 

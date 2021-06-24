@@ -30,6 +30,18 @@ const Routes = () => (
       <Route path="/:id/payment">
         <Payment />
       </Route>
+      <Route path="/negocios">
+        <MainPage />
+      </Route>
+      <Route path="/biografias">
+        <MainPage />
+      </Route>
+      <Route path="/ficcao">
+        <MainPage />
+      </Route>
+      <Route path="/auto-conhecimento">
+        <MainPage />
+      </Route>
     </Switch>
   </BrowserRouter>
 );

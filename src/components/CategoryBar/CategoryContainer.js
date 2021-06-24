@@ -6,8 +6,11 @@ const CategoryContainer = styled.div`
   height: 70px;
   align-items: center;
   justify-content: center;
-
+  margin: 0 auto;
   border-bottom: solid 1px #555;
+  a {
+    text-decoration: none;
+  }
 `;
 
 export default CategoryContainer;

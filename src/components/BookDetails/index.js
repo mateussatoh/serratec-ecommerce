@@ -1,5 +1,5 @@
 import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 
 import Container from "./Container";
 import BuyModal from "./BuyModal";
@@ -11,18 +11,24 @@ import Shipping from "./Shipping";
 import Buttons from "./Buttons";
 import Price from "./Price";
 
-// const [quantity, setQuantity] = useState(0);
-
 const index = (props) => {
-  
+  const [quantity, setQuantity] = useState(0);
 
+  const addQuantity = () => {
+    if (props.dados.quantidadeEmEstoque > quantity) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const removeQuantity = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    }
+  };
   return (
     <Container>
       <Image>
-        <img
-          src={props.dados.url}
-          alt=""
-        />
+        <img src={props.dados.url} alt="" />
       </Image>
       <Description>{props.dados.descricao}</Description>
       <BuyModal>
@@ -32,15 +38,18 @@ const index = (props) => {
         </Title>
 
         <Quantity>
+          {quantity === props.dados.quantidadeEmEstoque ? (
+            <p>{`Máximo de ${props.dados.quantidadeEmEstoque} unidades`}</p>
+          ) : null}
           <div>
-            <p>5</p>
-            <button>+</button>
-            <button>-</button>
+            <p>{quantity}</p>
+            <button onClick={addQuantity}>+</button>
+            <button onClick={removeQuantity}>-</button>
           </div>
-          <p>{`Máximo de ${props.dados.quantidadeEmEstoque} unidades`}</p>
         </Quantity>
         <Price>
-          <p>{`R$ ${props.dados.preco}`}</p>
+          <s>{`De R$ ${props.dados.preco}`}</s>
+          <p>{`Por RS ${props.dados.preco - 10}`}</p>
         </Price>
         <Shipping>
           <p>Calcular frete</p>
