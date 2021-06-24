@@ -16,9 +16,16 @@ function obterProdutoPorId(idProduto) {
     });
 }
 
-// function obterProdutosPorCategoria() {}
+function obterProdutosPorCategoria(idCategoria) {
+    return new Promise((resolve, reject) => {
+        return api.get(`/categoria/${idCategoria}/produtos`)
+        .then(response => resolve(response))
+        .catch(error => reject(error))
+    });
+}
 
 export default {
     obterTodos,
-    obterProdutoPorId
+    obterProdutoPorId,
+    obterProdutosPorCategoria
 }

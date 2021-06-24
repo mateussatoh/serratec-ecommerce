@@ -8,7 +8,7 @@ import Link from "react-router-dom/Link";
 
 const index = (props) => {
   const [quantidade, setQuantidade] = useState(1);
-  console.log(props);
+  // console.log(props);
   return (
     <Container>
       <Link to={`/book/${props.children.id}`}>
