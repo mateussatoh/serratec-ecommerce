@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import MainPage from "../pages/MainPage";
 import Login from "../pages/Login";
-import SignUp from "../pages/SignUp";
+import Signup from "../pages/Signup";
 import Payment from "../pages/Payment";
 import ProductDetails from "../pages/ProductDetails";
 import Checkout from "../pages/Checkout";
@@ -22,9 +22,9 @@ const Routes = () => (
         <Login />
       </Route>
       <Route exact path="/signup">
-        <SignUp />
+        <Signup />
       </Route>
-      <Route path="/:id/details">
+      <Route path="/book/1">
         <ProductDetails />
       </Route>
       <Route path="/:id/payment">

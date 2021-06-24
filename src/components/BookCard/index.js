@@ -8,7 +8,7 @@ import Link from "react-router-dom/Link";
 
 const index = () => {
   return (
-    <Link to={`/1/product`}>
+    <Link to={`/book/1`}>
       <Container>
         <Image>
           <img

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Quantity = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   p {
   }
   div {

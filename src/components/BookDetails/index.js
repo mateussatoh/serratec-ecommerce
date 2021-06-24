@@ -9,6 +9,7 @@ import Image from "./Image";
 import Quantity from "./Quantity";
 import Shipping from "./Shipping";
 import Buttons from "./Buttons";
+import Price from "./Price";
 
 // const [quantity, setQuantity] = useState(0);
 
@@ -49,6 +50,9 @@ const index = () => {
           </div>
           <p>Máximo de 22 unidades</p>
         </Quantity>
+        <Price>
+          <p>R$ 29,99</p>
+        </Price>
         <Shipping>
           <p>Calcular frete</p>
           <input type="text" placeholder="Digite seu CEP" />

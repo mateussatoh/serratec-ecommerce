@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 const Shipping = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   p {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 10px;
   }
   input {
     width: 350px;
 
     padding: 12px 20px;
-    font-size: 16px;
+    font-size: 14px;
     outline: none;
   }
 `;
