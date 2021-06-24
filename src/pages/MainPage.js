@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import apiProduto from "../services/produto-api";
-// import apiCategoria from "../services/categoria-api";
-import utilStorage from "../utils/storage.js";
 
 import CategoryBar from "../components/CategoryBar";
 import BookCard from "../components/BookCard";
@@ -43,13 +41,6 @@ const MainPage = () => {
   }
 
   useEffect(() => {
-    // let token = utilStorage.obterTokenDaStorage();
-
-    // if (!token) {
-    //   window.open("/login", "_self");
-    //   return;
-    // }
-
     const recurso = window.location.href.split(":3000")[1];
 
     switch(recurso) {
@@ -67,9 +58,12 @@ const MainPage = () => {
         break;
       case '/auto-conhecimento':
         recuperarProdutosPorCategoria(enumCategorias.Autoconhecimento);
+        break;
       default: // should never be reached        
         break;
     }
+
+    console.log(produtos)
   });
 
   return (

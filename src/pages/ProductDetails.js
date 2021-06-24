@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import apiProduto from "../services/produto-api";
-import utilStorage from "../utils/storage.js";
 
 import BookDetails from "../components/BookDetails";
 import CategoryBar from "../components/CategoryBar";
@@ -25,12 +24,6 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    // let token = utilStorage.obterTokenDaStorage();
-
-    // if (!token) {
-    //   window.open("/login", "_self");
-    //   return;
-    // }
 
     recuperarProduto();
   }, []);
