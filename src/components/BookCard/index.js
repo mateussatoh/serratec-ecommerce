@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Container from "./Container";
 import Image from "./Image";
@@ -6,22 +6,25 @@ import BookDetails from "./Container";
 
 import Link from "react-router-dom/Link";
 
-const index = () => {
+const index = (props) => {
+
+  const [quantidade, setQuantidade] = useState(1);
+
   return (
-    <Link to={`/book/1`}>
+    <Link to={`/book/${props.children.id}`}>
       <Container>
         <Image>
           <img
-            src="https://images-na.ssl-images-amazon.com/images/I/51DV4ZW6l8L._SX335_BO1,204,203,200_.jpg"
+            src={props.children.url}
             alt=""
           />
         </Image>
         <BookDetails>
-          <h4>Trilogia Senhor dos Anéis</h4>
-          <p>J. R. R. Tolkien</p>
+          <h4>{props.children.nome}</h4>
+          <p>Autor Not found</p> {/* Atributo não existente na API */}
           <div>
-            <p>R$ 99,99</p>
-            <p>R$ 89,99</p>
+            <p>De R$ {props.children.preco}</p>
+            <p>Por R$ {props.children.preco - 10}</p>
           </div>
         </BookDetails>
       </Container>
