@@ -62,8 +62,6 @@ const MainPage = () => {
       default: // should never be reached        
         break;
     }
-
-    console.log(produtos)
   });
 
   return (

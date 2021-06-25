@@ -6,7 +6,7 @@ const api = axios.create({
 })
 
 api.interceptors.request.use((config) => {
-    let token = utilStorage.obterTokenDaStorage();
+    let [token, ] = utilStorage.obterTokenDaStorage();
 
     if(token) {
         config.headers.Authorization = token; 

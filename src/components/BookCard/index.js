@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import Container from "./Container";
 import Image from "./Image";
 import BookDetails from "./BookDetails";
 
-import Link from "react-router-dom/Link";
+import { Link } from "react-router-dom";
 
 const index = (props) => {
-  const [quantidade, setQuantidade] = useState(1);
-  // console.log(props);
+
   return (
     <Container>
       <Link to={`/book/${props.children.id}`}>

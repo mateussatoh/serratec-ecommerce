@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import utilStorage from "../../utils/storage.js";
+
+import apiPedido from "../../services/pedido-api";
 
 import Header from "./Header";
 import PaymentModal from "./PaymentModal";
@@ -13,6 +17,45 @@ import Quantity from "../BookDetails/Quantity";
 import Button from "./Button";
 
 const index = () => {
+
+  const [idUsuario, setIdUsuario] = useState("");
+  const [quantidade, setQuantidade] = useState("");
+  const [idProduto, setIdProduto] = useState("");
+
+  const adicionarAoPedido = (id, prod, qtd) => {
+    
+    apiPedido.adicionarItemAoPedido(id, prod, qtd)
+      .then(resposta => {
+        // console.log(resposta)
+        alert("Item adicionado ao carrinho!")
+        // window.open("/login", "_self")
+      })
+      .catch(erro => {
+        alert("Erro! Verifique o console.")
+        console.log(erro);
+      })
+  }
+
+  useEffect(() => {
+  
+    const [ , idUsuario ] = utilStorage.obterTokenDaStorage();
+    const [ idProduto, quantidade ] = utilStorage.obterItemDoPedidoDaStorage();
+
+    setIdUsuario(idUsuario)
+    setQuantidade(quantidade)
+    setIdProduto(idProduto);
+
+    // pode ser a solução pra esperar os produtos carrerarem na tela inicial
+    if(!idUsuario || !quantidade || !idProduto) {
+      return
+    }
+
+    // console.log(idUsuario, idProduto, quantidade);
+    
+    adicionarAoPedido(idUsuario, idProduto, quantidade );    
+  }, []);
+
+
   return (
     <Container>
       <Header>
@@ -26,6 +69,7 @@ const index = () => {
       </Header>
       <PaymentMenu>
         <ProductList>
+          {/* {console.log(idUsuario, quantidade, idProduto)} */}
           <Product>
             <div>
               <img
