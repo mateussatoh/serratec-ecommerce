@@ -31,7 +31,7 @@ const MainPage = () => {
   const recuperarProdutosPorCategoria = (idCategoria) => {
     apiProduto.obterProdutosPorCategoria(idCategoria)
       .then((resposta) => {
-        console.log(resposta)
+        // console.log(resposta)
         resposta === [] ? setProdutos([]) : setProdutos(resposta.data)
       })
       .catch((erro) => {

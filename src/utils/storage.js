@@ -27,10 +27,16 @@ function obterItemDoPedidoDaStorage(){
     ];
 }
 
+function removerItemDoPedidoNaStorage(){
+    localStorage.setItem('idProduto');
+    localStorage.setItem('quantidade');
+}
+
 export default {
     salvarTokenNaStorage,
     obterTokenDaStorage,
     removerAutenticacao,
     salvarItemDoPedidoNaStorage,
-    obterItemDoPedidoDaStorage
+    obterItemDoPedidoDaStorage,
+    removerItemDoPedidoNaStorage
 }

@@ -24,7 +24,16 @@ function logar(username, senha) {
     });
 }
 
+function obterCliente(idCliente) {
+    return new Promise((resolve, reject) => {
+        return api.get(`/cliente/${idCliente}`)
+            .then(response => resolve(response))
+            .catch(error => reject(error))
+    });
+}
+
 export default {
     cadastrar,
-    logar
+    logar,
+    obterCliente
 }

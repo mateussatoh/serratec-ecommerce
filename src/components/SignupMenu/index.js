@@ -36,13 +36,13 @@ const index = () => {
     apiUsuario
       .cadastrar(email, username, senha, nome, cpf, cep, numero, complemento)
       .then((resposta) => {
-        console.log(resposta);
+        // console.log(resposta);
         alert("Usuário cadastrado!");
         window.open("/login", "_self");
       })
       .catch((erro) => {
         alert("Erro! Verifique o console.");
-        console.log(erro);
+        console.error(erro);
       });
   };
 

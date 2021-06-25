@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import utilStorage from "../../utils/storage.js";
 
 import apiPedido from "../../services/pedido-api";
+import apiUsuario from "../../services/usuario-api";
 
 import Header from "./Header";
 import PaymentModal from "./PaymentModal";
@@ -16,18 +17,19 @@ import PaymentMenu from "./PaymentMenu";
 import Quantity from "../BookDetails/Quantity";
 import Button from "./Button";
 
-const index = () => {
+const index = (props) => {
 
-  const [idUsuario, setIdUsuario] = useState("");
-  const [quantidade, setQuantidade] = useState("");
-  const [idProduto, setIdProduto] = useState("");
+  const [pedido, setPedido] = useState({});
 
-  const adicionarAoPedido = (id, prod, qtd) => {
+  const recuperarPedido = () => {
+
+    // console.log(props.dados.idPedido)
     
-    apiPedido.adicionarItemAoPedido(id, prod, qtd)
+    apiPedido.obterPedido(props.dados)
       .then(resposta => {
-        // console.log(resposta)
-        alert("Item adicionado ao carrinho!")
+        console.log("resposta" + resposta)
+        setPedido(resposta.data);
+        // alert("Cliente recuperado!")
         // window.open("/login", "_self")
       })
       .catch(erro => {
@@ -37,23 +39,16 @@ const index = () => {
   }
 
   useEffect(() => {
-  
-    const [ , idUsuario ] = utilStorage.obterTokenDaStorage();
-    const [ idProduto, quantidade ] = utilStorage.obterItemDoPedidoDaStorage();
-
-    setIdUsuario(idUsuario)
-    setQuantidade(quantidade)
-    setIdProduto(idProduto);
-
-    // pode ser a solução pra esperar os produtos carrerarem na tela inicial
-    if(!idUsuario || !quantidade || !idProduto) {
-      return
+    if(props.dados) {
+      recuperarPedido();
     }
 
-    // console.log(idUsuario, idProduto, quantidade);
+    // if(pedido) {
+    //   utilStorage.removerAutenticacao();
+    //   utilStorage.removerItemDoPedidoNaStorage();
+    // }
+  })
     
-    adicionarAoPedido(idUsuario, idProduto, quantidade );    
-  }, []);
 
 
   return (
@@ -67,50 +62,60 @@ const index = () => {
           <p>Preço</p>
         </div>
       </Header>
+      
       <PaymentMenu>
+        
         <ProductList>
-          {/* {console.log(idUsuario, quantidade, idProduto)} */}
+        {console.log(pedido)}
+          {pedido.produtosDoPedido ?
+          pedido.produtosDoPedido.map(produto => 
           <Product>
             <div>
               <img
-                src="https://images-na.ssl-images-amazon.com/images/I/51DV4ZW6l8L._SX335_BO1,204,203,200_.jpg"
+                src={produto.produto.url}
                 alt=""
               />
               <div>
-                <p>Senhor dos anéis</p>
-                <p>J. R. R. Tolkien</p>
+                <p>{produto.produto.nome}</p>
+                <p>{produto.produto.autor}</p>
               </div>
             </div>
             <Quantity>
               <div>
-                <p>5</p>
+                <p>{produto.quantidadeProdutos}</p>
                 <button>+</button>
                 <button>-</button>
               </div>
-              <p>Máximo de 22 unidades</p>
+              <p>{`Máximo de ${produto.produto.quantidadeEmEstoque} unidades`}</p>
             </Quantity>
-            <DeliveryData>30 de junho</DeliveryData>
-            <Price>R$ 50</Price>
+            <DeliveryData>{pedido.dataEntrega}</DeliveryData>
+            <Price>{`R$ ${produto.precoDoProduto}`}</Price>
           </Product>
+          ) : "nada"}
         </ProductList>
         <PaymentModal>
           <h3>Resumo do pedido</h3>
+          {console.log(pedido)}
+          {pedido.produtosDoPedido ?
+          pedido.produtosDoPedido.map(produto =>
           <div>
-            <p>2X</p>
-            <p>Senhor dos anéis</p>
-            <p>R$ 100</p>
+            <p>{`${produto.quantidadeProdutos}X`}</p>
+            <p>{produto.produto.nome}</p>
+            <p>{`R$ ${produto.quantidadeProdutos * produto.precoDoProduto}`}</p>
           </div>
+          ) : "nada"}
           <div>
             <p>Frete</p>
             <p>GRÁTIS</p>
           </div>
           <div>
             <p>Total</p>
-            <p>R$ 100</p>
+            <p>{pedido.valorTotal}</p>
           </div>
           <Button>Efetuar pagamento</Button>
         </PaymentModal>
       </PaymentMenu>
+      
     </Container>
   );
 };
