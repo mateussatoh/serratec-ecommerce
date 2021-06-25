@@ -21,9 +21,6 @@ const index = (props) => {
 
   const [pedido, setPedido] = useState({});
 
-
-  
-
   const recuperarPedido = () => {
 
     // console.log(props.dados.idPedido)
@@ -45,6 +42,11 @@ const index = (props) => {
     if(props.dados) {
       recuperarPedido();
     }
+
+    // if(pedido) {
+    //   utilStorage.removerAutenticacao();
+    //   utilStorage.removerItemDoPedidoNaStorage();
+    // }
   })
     
 
@@ -99,7 +101,7 @@ const index = (props) => {
           <div>
             <p>{`${produto.quantidadeProdutos}X`}</p>
             <p>{produto.produto.nome}</p>
-            <p>R$ 100</p>
+            <p>{`R$ ${produto.quantidadeProdutos * produto.precoDoProduto}`}</p>
           </div>
           ) : "nada"}
           <div>
