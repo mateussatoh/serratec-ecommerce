@@ -31,7 +31,7 @@ const index = (props) => {
     apiPedido.obterPedido(props.dados)
       .then(resposta => {
         console.log("resposta" + resposta)
-        setPedido(resposta);
+        setPedido(resposta.data);
         // alert("Cliente recuperado!")
         // window.open("/login", "_self")
       })
@@ -63,28 +63,30 @@ const index = (props) => {
       <PaymentMenu>
         <ProductList>
           {console.log(pedido)}
+          {pedido.produtosDoPedido ?
+          pedido.produtosDoPedido.map(produto => 
           <Product>
             <div>
               <img
-                src="https://images-na.ssl-images-amazon.com/images/I/51DV4ZW6l8L._SX335_BO1,204,203,200_.jpg"
+                src={produto.produto.url}
                 alt=""
               />
               <div>
-                <p>Senhor dos anéis</p>
-                <p>J. R. R. Tolkien</p>
+                <p>{produto.produto.nome}</p>
+                <p>{produto.produto.autor}</p>
               </div>
             </div>
             <Quantity>
               <div>
-                <p>5</p>
+                <p>{produto.produto.quantidadeProdutos}</p>
                 <button>+</button>
                 <button>-</button>
               </div>
-              <p>Máximo de 22 unidades</p>
+              <p>{`Máximo de ${produto.produto.quantidadeEmEstoque} unidades`}</p>
             </Quantity>
-            <DeliveryData>30 de junho</DeliveryData>
-            <Price>R$ 50</Price>
-          </Product>
+            <DeliveryData>{pedido.dataEntrega}</DeliveryData>
+            <Price>{`R$ ${produto.precoDoProduto}`}</Price>
+          </Product>) : "nada"}
         </ProductList>
         <PaymentModal>
           <h3>Resumo do pedido</h3>
@@ -99,7 +101,7 @@ const index = (props) => {
           </div>
           <div>
             <p>Total</p>
-            <p>R$ 100</p>
+            <p>{pedido.valorTotal}</p>
           </div>
           <Button>Efetuar pagamento</Button>
         </PaymentModal>
