@@ -60,9 +60,11 @@ const index = (props) => {
           <p>Preço</p>
         </div>
       </Header>
+      
       <PaymentMenu>
+        
         <ProductList>
-          {console.log(pedido)}
+        {console.log(pedido)}
           {pedido.produtosDoPedido ?
           pedido.produtosDoPedido.map(produto => 
           <Product>
@@ -78,7 +80,7 @@ const index = (props) => {
             </div>
             <Quantity>
               <div>
-                <p>{produto.produto.quantidadeProdutos}</p>
+                <p>{produto.quantidadeProdutos}</p>
                 <button>+</button>
                 <button>-</button>
               </div>
@@ -86,15 +88,20 @@ const index = (props) => {
             </Quantity>
             <DeliveryData>{pedido.dataEntrega}</DeliveryData>
             <Price>{`R$ ${produto.precoDoProduto}`}</Price>
-          </Product>) : "nada"}
+          </Product>
+          ) : "nada"}
         </ProductList>
         <PaymentModal>
           <h3>Resumo do pedido</h3>
+          {console.log(pedido)}
+          {pedido.produtosDoPedido ?
+          pedido.produtosDoPedido.map(produto =>
           <div>
-            <p>2X</p>
-            <p>Senhor dos anéis</p>
+            <p>{`${produto.quantidadeProdutos}X`}</p>
+            <p>{produto.produto.nome}</p>
             <p>R$ 100</p>
           </div>
+          ) : "nada"}
           <div>
             <p>Frete</p>
             <p>GRÁTIS</p>
@@ -106,6 +113,7 @@ const index = (props) => {
           <Button>Efetuar pagamento</Button>
         </PaymentModal>
       </PaymentMenu>
+      
     </Container>
   );
 };
